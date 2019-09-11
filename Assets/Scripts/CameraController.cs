@@ -9,7 +9,9 @@ public class CameraController : MonoBehaviour{
     public Vector3 off;
     private Vector3 vel = Vector3.zero;
     // Start is called before the first frame update
-    void Start(){}
+    void Start(){
+        off = transform.position - target.position;
+    }
 
     // Update is called once per frame
     void FixedUpdate(){
