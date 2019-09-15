@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         transform.Rotate(0, sensitivity * Input.GetAxis("Mouse X"),0);
+        
         float xVal = Input.GetAxis("Horizontal");
         float zVal = Input.GetAxis("Vertical");
         transform.Translate(new Vector3(xVal, 0, zVal)*speed);
