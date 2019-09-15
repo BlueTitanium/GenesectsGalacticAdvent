@@ -1,23 +1,32 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraController : MonoBehaviour{
-    public Transform target;
+public class CameraController : MonoBehaviour
+{
+    private Vector3 offset;
+ 
+    public Transform player;
 
-    public float smooth = .125f;
-    public Vector3 off;
-    private Vector3 vel = Vector3.zero;
-    // Start is called before the first frame update
-    void Start(){
-        off = transform.position - target.position;
+    public float camPosX;
+    public float camPosY;
+    public float camPosZ;
+
+    public float sensitivity;
+ 
+    void Start()
+    {
+        offset = new Vector3(player.position.x + camPosX, player.position.y + camPosY, player.position.z + camPosZ);
     }
-
-    // Update is called once per frame
-    void FixedUpdate(){
-        Vector3 desPos = target.position + off;
-        Vector3 smoothPos = Vector3.SmoothDamp(transform.position, desPos, ref vel,smooth, 2f);
-        transform.position = smoothPos;
-        transform.LookAt(target.position);
+ 
+    
+    void LateUpdate()
+    {
+        offset = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * sensitivity, Vector3.up) 
+                 * offset;
+        offset.x = Mathf.Clamp(offset.x, 0, 0);
+        offset.y = Mathf.Clamp(offset.y, 5, 10);
+        offset.z = Mathf.Clamp(offset.z, -20, -20);
+        transform.position = player.position + offset;
+        transform.LookAt(player.position);
     }
 }
