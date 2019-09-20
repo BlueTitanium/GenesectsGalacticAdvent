@@ -11,6 +11,6 @@ public class StarScript : MonoBehaviour
     void Update()
     {
         TimeSpan time = DateTime.Now.TimeOfDay;
-        transform.localRotation = Quaternion.Euler((float)time.TotalMinutes * speed, 0f, 0f);
+        transform.localRotation = Quaternion.Euler((float)time.TotalMinutes * speed, -140f, 70f);
     }
 }
