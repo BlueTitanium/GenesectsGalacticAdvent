@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb3d;
     public float sensitivity;
     public float speed = 1f;
+    public float jumpForce = 20f;
     public bool grounded;
     public GameObject leftFoot;
     public GameObject rightFoot;
@@ -37,6 +38,10 @@ public class PlayerController : MonoBehaviour
         float zVal = Input.GetAxis("Vertical");
 
         transform.Translate(new Vector3(xVal, 0, zVal)*speed);
-    }
 
+        float yMove = 0;
+        if(Input.GetKey("space") && grounded) yMove = 1;
+
+        rb3d.AddForce(0, jumpForce*yMove, 0);
+    }
 }
