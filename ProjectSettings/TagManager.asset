@@ -8,6 +8,7 @@ TagManager:
   - OuterStar
   - DeathStar
   - Ground
+  - Moon
   layers:
   - Default
   - TransparentFX

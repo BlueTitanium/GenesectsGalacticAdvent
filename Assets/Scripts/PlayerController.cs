@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     public float cdTime = .5f;
     public GameObject trail;
     private AudioSource audio;
+    private bool victory = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -105,6 +106,9 @@ public class PlayerController : MonoBehaviour
             curTime = 0f;
             flySpeed = originalFlySpeed;
             audio.Play();
+        }
+        if(col.collider.tag == "Moon"){
+            victory = true;
         }
     }
 }
