@@ -82,6 +82,7 @@ public class PlayerController : MonoBehaviour
             multiplier *= 4;
             score += 500 * multiplier;
             col.gameObject.SetActive(false);
+            flySpeed *= 1.5f;
         }
         if(col.tag == "OuterStar"){
             multiplier *= 2;
