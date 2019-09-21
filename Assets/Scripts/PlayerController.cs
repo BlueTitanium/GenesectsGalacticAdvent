@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     public float knockback = 50f;
     public float curTime = .6f;
     public float cdTime = .5f;
+    public GameObject trail;
     // Start is called before the first frame update
     void Start()
     {
@@ -55,6 +56,7 @@ public class PlayerController : MonoBehaviour
         else animator.SetBool("IsRunning", false);
         float step = rotSpeed * Time.deltaTime;
         if(!flying){
+            trail.SetActive(false);
             cam.GetComponent<RPGCamera>().limitYRotation = true;
 
             if(zVal != 0) transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward,new Vector3(cam.transform.forward.x,0f,cam.transform.forward.z),step, 0.0f));
@@ -67,6 +69,7 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetKeyDown("space") && !grounded && !flying){flying = true;rb3d.velocity = new Vector3(0, 0, 0);}
         if(flying) {
+            trail.SetActive(true);
             cam.GetComponent<RPGCamera>().limitYRotation = false;
             rb3d.useGravity = false;
             if(Input.GetKey("space")) yMove = 1f;
