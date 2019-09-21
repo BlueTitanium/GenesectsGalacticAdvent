@@ -21,6 +21,9 @@ public class PlayerController : MonoBehaviour
     private bool leftGround;
     private bool rightGround;
     public bool flying = false;
+    public float knockback = 50f;
+    public float curTime = .6f;
+    public float cdTime = .5f;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +33,12 @@ public class PlayerController : MonoBehaviour
     }
     // Update is called once per frame
     void Update()
-    {
+    {   
+        if(curTime < cdTime){
+            curTime += Time.deltaTime;
+        } else{
+            rb3d.velocity = new Vector3(0,rb3d.velocity.y,0);
+        }
         leftGround = leftFoot.GetComponent<GroundCheck>().grounded;
         rightGround = rightFoot.GetComponent<GroundCheck>().grounded;
         
@@ -73,6 +81,15 @@ public class PlayerController : MonoBehaviour
             multiplier *= 2;
             score += 500 * multiplier;
             col.gameObject.SetActive(false);
+        }  
+    }
+    void OnCollisionEnter(Collision col)
+    {
+        if(col.collider.tag == "DeathStar"){
+            multiplier = 1;
+            score -= 250;
+            rb3d.velocity = new Vector3(-transform.forward.x * knockback, 0, -transform.forward.x * knockback); 
+            curTime = 0f;
         }
     }
 }
