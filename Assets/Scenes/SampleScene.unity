@@ -1557,6 +1557,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UIPanel: {fileID: 2145007697}
+  time: {fileID: 745659551}
+  score: {fileID: 1918619340}
+  multiplier: {fileID: 1844043770}
   player: {fileID: 156663141}
 --- !u!1 &1640955542
 GameObject:
@@ -2047,8 +2050,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -107, y: -46}
-  m_SizeDelta: {x: 198.3, y: 26.7}
+  m_AnchoredPosition: {x: -296, y: -45.9}
+  m_SizeDelta: {x: 576.3, y: 26.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1844043770
 MonoBehaviour:
@@ -2236,8 +2239,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -107, y: -11.299988}
-  m_SizeDelta: {x: 198.3, y: 22.6}
+  m_AnchoredPosition: {x: -291.9, y: -12.8}
+  m_SizeDelta: {x: 568.1, y: 25.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1918619340
 MonoBehaviour:

@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     public float flySpeed = .5f;
     public float rotSpeed = 10f;    
     public float jumpForce = 20f;
+    public float score = 0f;
+    public float multiplier = 1f;
     public bool grounded;
     public GameObject leftFoot;
     public GameObject rightFoot;
@@ -59,5 +61,18 @@ public class PlayerController : MonoBehaviour
             transform.Translate(new Vector3(xVal, yMove, zVal) * flySpeed);
         }
         if(grounded && flying) {flying = false;rb3d.useGravity= true;}
+    }
+    void OnTriggerEnter(Collider col)
+    {
+        if(col.tag == "InnerStar"){
+            multiplier *= 4;
+            score += 500 * multiplier;
+            col.gameObject.SetActive(false);
+        }
+        if(col.tag == "OuterStar"){
+            multiplier *= 2;
+            score += 500 * multiplier;
+            col.gameObject.SetActive(false);
+        }
     }
 }
