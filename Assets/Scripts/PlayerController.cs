@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     private bool leftGround;
     private bool rightGround;
     public bool flying = false;
+    public Animator animator;
     public float knockback = 50f;
     public float curTime = .6f;
     public float cdTime = .5f;
@@ -41,10 +42,13 @@ public class PlayerController : MonoBehaviour
         }
         leftGround = leftFoot.GetComponent<GroundCheck>().grounded;
         rightGround = rightFoot.GetComponent<GroundCheck>().grounded;
-        
-        if(leftGround || rightGround) grounded = true;
+        bool boxGround = transform.GetComponent<GroundCheck>().grounded;
+        if(leftGround || rightGround || boxGround) grounded = true;
         else grounded = false;
-        
+        if(grounded)animator.SetBool("IsGrounded", true);
+        else animator.SetBool("IsGrounded", false);
+        if(flying)animator.SetBool("IsFlying", true);
+        else animator.SetBool("IsFlying", false);
         float xVal = Input.GetAxis("Horizontal");
         float zVal = Input.GetAxis("Vertical");
         float step = rotSpeed * Time.deltaTime;
