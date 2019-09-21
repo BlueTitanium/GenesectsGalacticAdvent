@@ -14,10 +14,10 @@ public class Manager : MonoBehaviour {
     public TextMeshProUGUI score;
     public TextMeshProUGUI[] scoreDiffs;
     public TextMeshProUGUI multiplier;
-    private int scoreVal = 0;
-    private int multiplierVal = 1;
+    private long scoreVal = 0;
+    private long multiplierVal = 1;
     private float seconds = 0;
-    private int[] scoreDiffVals;
+    private long[] scoreDiffVals;
     public GameObject player;
     bool isPaused; //Used to determine paused state
 
@@ -28,9 +28,9 @@ public class Manager : MonoBehaviour {
         time.SetText("Time: " + 0 + " seconds");
         score.SetText("Score: " + scoreVal);
         multiplier.SetText("Multiplier: x" + multiplierVal);
-        for(int i = 0; i < scoreDiffs.Length; i++)
+        for(long i = 0; i < scoreDiffs.Length; i++)
             scoreDiffs[i].SetText("");
-        scoreDiffVals = new int[scoreDiffs.Length];
+        scoreDiffVals = new long[scoreDiffs.Length];
     }
 
     void Update ()
@@ -42,10 +42,10 @@ public class Manager : MonoBehaviour {
         UnPause();
         seconds += Time.deltaTime;
         time.SetText("Time: " + Math.Round(seconds,2));
-        int scoreTMP = scoreVal;
-        scoreVal = (int)player.GetComponent<PlayerController>().score;
+        long scoreTMP = scoreVal;
+        scoreVal = (long)player.GetComponent<PlayerController>().score;
         scoreDiffVals[0] = scoreVal - scoreTMP;
-        int counter = 0;
+        long counter = 0;
         if(scoreDiffVals[0] != 0){
             if(scoreDiffVals[0] > 0)scoreDiffs[counter].SetText("+" + scoreDiffVals[0]);
             if(scoreDiffVals[0] < 0)scoreDiffs[counter].SetText("" + scoreDiffVals[0]);
@@ -56,7 +56,7 @@ public class Manager : MonoBehaviour {
             counter++;
             if(counter == scoreDiffs.Length)counter = 0;
         }
-        multiplierVal = (int)player.GetComponent<PlayerController>().multiplier;
+        multiplierVal = (long)player.GetComponent<PlayerController>().multiplier;
         score.SetText("Score: " + scoreVal);
         multiplier.SetText("Multiplier: x" + multiplierVal);    
     }

@@ -10,10 +10,11 @@ public class PlayerController : MonoBehaviour
     public float sensitivity;
     public float groundSpeed = 1f;
     public float flySpeed = .5f;
+    private float originalFlySpeed;
     public float rotSpeed = 10f;    
     public float jumpForce = 20f;
-    public float score = 0f;
-    public float multiplier = 1f;
+    public long score = 0;
+    public long multiplier = 1;
     public bool grounded;
     public GameObject leftFoot;
     public GameObject rightFoot;
@@ -31,7 +32,7 @@ public class PlayerController : MonoBehaviour
     {
         rb3d = GetComponent<Rigidbody>();
         offset = new Vector3(0,0,0);
-        
+        originalFlySpeed = flySpeed;
     }
     // Update is called once per frame
     void Update()
@@ -82,14 +83,14 @@ public class PlayerController : MonoBehaviour
     void OnTriggerEnter(Collider col)
     {
         if(col.tag == "InnerStar"){
-            multiplier *= 4;
-            score += 500 * multiplier;
+            multiplier *= 2;
+            score += 10 * multiplier;
             col.gameObject.SetActive(false);
-            flySpeed *= 1.5f;
+            flySpeed *= 1.25f;
         }
         if(col.tag == "OuterStar"){
             multiplier *= 2;
-            score += 500 * multiplier;
+            score += 10 * multiplier;
             col.gameObject.SetActive(false);
         }  
     }
@@ -97,9 +98,10 @@ public class PlayerController : MonoBehaviour
     {
         if(col.collider.tag == "DeathStar"){
             multiplier = 1;
-            score -= 250;
+            score -= 10;
             rb3d.velocity = new Vector3(-transform.forward.x * knockback, 0, -transform.forward.x * knockback); 
             curTime = 0f;
+            flySpeed = originalFlySpeed;
         }
     }
 }
