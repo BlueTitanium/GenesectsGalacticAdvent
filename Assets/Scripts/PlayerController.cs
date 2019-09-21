@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
         float xVal = Input.GetAxis("Horizontal");
         float zVal = Input.GetAxis("Vertical");
         float step = rotSpeed * Time.deltaTime;
-        if(grounded){
+        if(!flying){
             cam.GetComponent<RPGCamera>().limitYRotation = true;
 
             if(zVal != 0) transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward,new Vector3(cam.transform.forward.x,0f,cam.transform.forward.z),step, 0.0f));
