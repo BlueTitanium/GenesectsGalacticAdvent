@@ -3827,6 +3827,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 330584199}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &343080043
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 343080044}
+  m_Layer: 0
+  m_Name: DefenderStars
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &343080044
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343080043}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1993, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1486823162}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &344391849
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11165,7 +11195,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1486823161}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &1092149556
+--- !u!64 &1092149559
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -22792,7 +22822,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8296172667498946942}
-  m_LocalRotation: {x: -0.5311851, y: -0.40525186, z: -0.41417512, w: 0.6181201}
+  m_LocalRotation: {x: -0.49130368, y: -0.46400923, z: -0.4569014, w: 0.5784093}
   m_LocalPosition: {x: 201.10002, y: 49.500004, z: -180.70021}
   m_LocalScale: {x: 0.010000004, y: 0.010000009, z: 0.010000006}
   m_Children:
@@ -22800,7 +22830,7 @@ Transform:
   - {fileID: 8495801562721173798}
   m_Father: {fileID: 1813847759}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -82.914, y: -29.628002, z: -41.348003}
+  m_LocalEulerAnglesHint: {x: -82.914, y: -45.39, z: -36.06}
 --- !u!4 &5013841029894355799
 Transform:
   m_ObjectHideFlags: 0
@@ -23438,6 +23468,7 @@ GameObject:
   - component: {fileID: 5006512736490918765}
   - component: {fileID: 8296172667498946943}
   - component: {fileID: 8296172667498946944}
+  - component: {fileID: 8296172667498946945}
   m_Layer: 0
   m_Name: GrandStar
   m_TagString: DeathStar
@@ -23473,8 +23504,23 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 94
   m_CollisionDetection: 0
+--- !u!114 &8296172667498946945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8296172667498946942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a1d4775ebcca6b418746dfa4240704c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  x: -82.914
+  z: -36.06
+  speed: 120
 --- !u!1 &8296172668598848877
 GameObject:
   m_ObjectHideFlags: 0
