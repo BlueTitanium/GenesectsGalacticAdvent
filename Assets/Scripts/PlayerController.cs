@@ -51,6 +51,8 @@ public class PlayerController : MonoBehaviour
         else animator.SetBool("IsFlying", false);
         float xVal = Input.GetAxis("Horizontal");
         float zVal = Input.GetAxis("Vertical");
+        if(grounded && (xVal != 0 || zVal != 0))animator.SetBool("IsRunning", true);
+        else animator.SetBool("IsRunning", false);
         float step = rotSpeed * Time.deltaTime;
         if(!flying){
             cam.GetComponent<RPGCamera>().limitYRotation = true;
