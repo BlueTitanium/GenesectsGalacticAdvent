@@ -27,12 +27,14 @@ public class PlayerController : MonoBehaviour
     public float curTime = .6f;
     public float cdTime = .5f;
     public GameObject trail;
+    private AudioSource audio;
     // Start is called before the first frame update
     void Start()
     {
         rb3d = GetComponent<Rigidbody>();
         offset = new Vector3(0,0,0);
         originalFlySpeed = flySpeed;
+        audio = GetComponent<AudioSource>();
     }
     // Update is called once per frame
     void Update()
@@ -102,6 +104,7 @@ public class PlayerController : MonoBehaviour
             rb3d.velocity = new Vector3(-transform.forward.x * knockback, 0, -transform.forward.x * knockback); 
             curTime = 0f;
             flySpeed = originalFlySpeed;
+            audio.Play();
         }
     }
 }
