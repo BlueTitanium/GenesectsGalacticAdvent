@@ -12,8 +12,8 @@ public class Manager : MonoBehaviour {
     Transform pauseScreen = null;
     [SerializeField]
     Transform VictoryScreen = null;
-    //[SerializeField]
-    //Transform TrueVictoryScreen = null; //Will assign our panel to this variable so we can enable/disable it
+    [SerializeField]
+    Transform TrueVictoryScreen = null; //Will assign our panel to this variable so we can enable/disable it
     public TextMeshProUGUI time;
     public TextMeshProUGUI score;
     public TextMeshProUGUI[] scoreDiffs;
@@ -30,6 +30,7 @@ public class Manager : MonoBehaviour {
         Time.timeScale = 1f;
         pauseScreen.gameObject.SetActive(false); //make sure our pause menu is disabled when scene starts
         VictoryScreen.gameObject.SetActive(false);
+        TrueVictoryScreen.gameObject.SetActive(false);
         isPaused = false; //make sure isPaused is always false when our scene opens
         time.SetText("Time: " + 0 + " seconds");
         score.SetText("Score: " + scoreVal);
@@ -51,6 +52,12 @@ public class Manager : MonoBehaviour {
             dispVictory();
         if(!player.GetComponent<PlayerController>().victory && VictoryScreen.gameObject.activeSelf == true){
             VictoryScreen.gameObject.SetActive(false); //turn off pause menu
+            Time.timeScale = 1f;
+        }
+        if(player.GetComponent<PlayerController>().truevictory)
+            dispTrueVictory();
+        if(!player.GetComponent<PlayerController>().truevictory && TrueVictoryScreen.gameObject.activeSelf == true){
+            TrueVictoryScreen.gameObject.SetActive(false); //turn off pause menu
             Time.timeScale = 1f;
         }
             
@@ -90,6 +97,10 @@ public class Manager : MonoBehaviour {
     }
     public void dispVictory(){
         VictoryScreen.gameObject.SetActive(true);
+        Time.timeScale = 0f;
+    }
+    public void dispTrueVictory(){
+        TrueVictoryScreen.gameObject.SetActive(true);
         Time.timeScale = 0f;
     }
     public void QuitGame()

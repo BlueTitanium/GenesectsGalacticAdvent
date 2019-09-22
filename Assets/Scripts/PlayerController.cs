@@ -111,12 +111,14 @@ public class PlayerController : MonoBehaviour
             audio.Play();
         }
         if(col.collider.tag == "Moon"){
+            score += 100;
             victory = true;
             cam.GetComponent<AudioSource>().Stop();
             audio.clip = vicTheme;
             audio.Play();
         }
         if(col.collider.tag == "TrueMoon"){
+            score += 10000;
             truevictory = true;
             cam.GetComponent<AudioSource>().Stop();
             audio.clip = vicThemeTrue;
