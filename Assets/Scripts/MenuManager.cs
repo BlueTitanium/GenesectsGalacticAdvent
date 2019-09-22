@@ -4,9 +4,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class MenuManager : MonoBehaviour
 {
+    [SerializeField]
+    public Transform Instructions = null;
     // Start is called before the first frame update
     void Start()
-    {
+    {   
+        Instructions.localScale = new Vector3(0,0,0);
         Time.timeScale = 1f;
     }
 
@@ -20,8 +23,14 @@ public class MenuManager : MonoBehaviour
         SceneManager.LoadScene("Main");
         Time.timeScale = 1f;
     }
+    public void GetInstructions(){
+        Instructions.localScale = new Vector3(1,1,1);
+    }
     public void QuitGame()
     {
         Application.Quit();
+    }
+    public void GoBack(){
+        Instructions.localScale = new Vector3(0,0,0);
     }
 }
