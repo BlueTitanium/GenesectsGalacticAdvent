@@ -26,7 +26,8 @@ public class Manager : MonoBehaviour {
     bool isPaused; //Used to determine paused state
 
     void Start ()
-    {
+    {   
+        Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1f;
         pauseScreen.gameObject.SetActive(false); //make sure our pause menu is disabled when scene starts
         VictoryScreen.gameObject.SetActive(false);
@@ -84,6 +85,7 @@ public class Manager : MonoBehaviour {
 
     public void Pause()
     {
+        Cursor.lockState = CursorLockMode.None;
         isPaused = true;
         pauseScreen.gameObject.SetActive(true); //turn on the pause menu
         Time.timeScale = 0f; //pause the game
@@ -91,25 +93,30 @@ public class Manager : MonoBehaviour {
 
     public void UnPause()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         isPaused = false;
         pauseScreen.gameObject.SetActive(false); //turn off pause menu
         Time.timeScale = 1f; //resume game
     }
     public void dispVictory(){
+        Cursor.lockState = CursorLockMode.None;
         VictoryScreen.gameObject.SetActive(true);
         Time.timeScale = 0f;
     }
     public void dispTrueVictory(){
+        Cursor.lockState = CursorLockMode.None;
         TrueVictoryScreen.gameObject.SetActive(true);
         Time.timeScale = 0f;
     }
     public void QuitToMainScreen(){
+        Cursor.lockState = CursorLockMode.None;
         SceneManager.LoadScene("Menu");
         Time.timeScale = 1f;
     }
 
     public void Restart()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         SceneManager.LoadScene("Main");
         Time.timeScale = 1f;
     }
