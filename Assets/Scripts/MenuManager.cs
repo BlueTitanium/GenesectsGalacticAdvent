@@ -9,6 +9,7 @@ public class MenuManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {   
+        Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         Instructions.localScale = new Vector3(0,0,0);
         Time.timeScale = 1f;
