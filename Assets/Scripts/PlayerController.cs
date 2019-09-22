@@ -27,8 +27,11 @@ public class PlayerController : MonoBehaviour
     public float curTime = .6f;
     public float cdTime = .5f;
     public GameObject trail;
-    private AudioSource audio;
+    private new AudioSource audio;
+    public AudioClip vicTheme;
+    public AudioClip vicThemeTrue;
     private bool victory = false;
+    private bool truevictory = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -109,6 +112,15 @@ public class PlayerController : MonoBehaviour
         }
         if(col.collider.tag == "Moon"){
             victory = true;
+            cam.GetComponent<AudioSource>().Stop();
+            audio.clip = vicTheme;
+            audio.Play();
+        }
+        if(col.collider.tag == "TrueMoon"){
+            truevictory = true;
+            cam.GetComponent<AudioSource>().Stop();
+            audio.clip = vicThemeTrue;
+            audio.Play();
         }
     }
 }
