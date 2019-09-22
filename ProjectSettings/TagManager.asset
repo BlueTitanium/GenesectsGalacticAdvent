@@ -9,6 +9,7 @@ TagManager:
   - DeathStar
   - Ground
   - Moon
+  - TrueMoon
   layers:
   - Default
   - TransparentFX

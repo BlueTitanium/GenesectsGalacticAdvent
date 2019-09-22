@@ -30,8 +30,8 @@ public class PlayerController : MonoBehaviour
     private new AudioSource audio;
     public AudioClip vicTheme;
     public AudioClip vicThemeTrue;
-    private bool victory = false;
-    private bool truevictory = false;
+    public bool victory = false;
+    public bool truevictory = false;
     // Start is called before the first frame update
     void Start()
     {
