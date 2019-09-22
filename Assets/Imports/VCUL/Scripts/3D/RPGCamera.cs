@@ -65,7 +65,7 @@ public class RPGCamera : MonoBehaviour
 
         offset.z -= -Input.GetAxis("Mouse ScrollWheel") * sensitivity * Time.deltaTime;
         offset.z = Mathf.Clamp(offset.z, minOffset.z, maxOffset.z);
-
+        
         Quaternion rotation = Quaternion.Euler(cameraRotation.y, cameraRotation.x, 0);
         Vector3 position = rotation * new Vector3(offset.x, offset.y, offset.z) + target.position;
 

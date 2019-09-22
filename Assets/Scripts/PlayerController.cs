@@ -30,8 +30,10 @@ public class PlayerController : MonoBehaviour
     private new AudioSource audio;
     public AudioClip vicTheme;
     public AudioClip vicThemeTrue;
+    public AudioClip crashTheme;
     public bool victory = false;
     public bool truevictory = false;
+    public bool crashed = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -114,15 +116,24 @@ public class PlayerController : MonoBehaviour
             score += 100;
             victory = true;
             cam.GetComponent<AudioSource>().Stop();
-            audio.clip = vicTheme;
-            audio.Play();
+            cam.GetComponent<AudioSource>().clip = vicTheme;
+            cam.GetComponent<AudioSource>().volume = 1;
+            cam.GetComponent<AudioSource>().Play();
         }
         if(col.collider.tag == "TrueMoon"){
             score += 10000;
             truevictory = true;
             cam.GetComponent<AudioSource>().Stop();
-            audio.clip = vicThemeTrue;
-            audio.Play();
+            cam.GetComponent<AudioSource>().clip = vicThemeTrue;
+            cam.GetComponent<AudioSource>().volume = 1;
+            cam.GetComponent<AudioSource>().Play();
+        }
+        if(col.collider.tag == "Earth"){
+            crashed = true;
+            cam.GetComponent<AudioSource>().Stop();
+            cam.GetComponent<AudioSource>().clip = crashTheme;
+            cam.GetComponent<AudioSource>().volume = 1;
+            cam.GetComponent<AudioSource>().Play();
         }
     }
 }

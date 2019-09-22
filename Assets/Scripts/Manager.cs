@@ -13,7 +13,9 @@ public class Manager : MonoBehaviour {
     [SerializeField]
     Transform VictoryScreen = null;
     [SerializeField]
-    Transform TrueVictoryScreen = null; //Will assign our panel to this variable so we can enable/disable it
+    Transform TrueVictoryScreen = null; 
+    [SerializeField]
+    Transform CrashScreen = null;//Will assign our panel to this variable so we can enable/disable it
     public TextMeshProUGUI time;
     public TextMeshProUGUI score;
     public TextMeshProUGUI[] scoreDiffs;
@@ -33,6 +35,7 @@ public class Manager : MonoBehaviour {
         pauseScreen.gameObject.SetActive(false); //make sure our pause menu is disabled when scene starts
         VictoryScreen.gameObject.SetActive(false);
         TrueVictoryScreen.gameObject.SetActive(false);
+        CrashScreen.gameObject.SetActive(false);
         isPaused = false; //make sure isPaused is always false when our scene opens
         time.SetText("Time: " + 0 + " seconds");
         score.SetText("Score: " + scoreVal);
@@ -46,9 +49,9 @@ public class Manager : MonoBehaviour {
     {   
 
         //If player presses escape and game is not paused. Pause game. If game is paused and player presses escape, unpause.
-        if(Input.GetKeyDown(KeyCode.Escape) && !isPaused && !player.GetComponent<PlayerController>().victory)
+        if(Input.GetKeyDown(KeyCode.Escape) && !isPaused && !player.GetComponent<PlayerController>().victory && !player.GetComponent<PlayerController>().truevictory && !player.GetComponent<PlayerController>().crashed)
         Pause();
-        else if(Input.GetKeyDown(KeyCode.Escape) && isPaused && !player.GetComponent<PlayerController>().victory)
+        else if(Input.GetKeyDown(KeyCode.Escape) && isPaused && !player.GetComponent<PlayerController>().victory && !player.GetComponent<PlayerController>().truevictory && !player.GetComponent<PlayerController>().crashed)
         UnPause();
         if(player.GetComponent<PlayerController>().victory)
             dispVictory();
@@ -62,7 +65,13 @@ public class Manager : MonoBehaviour {
             TrueVictoryScreen.gameObject.SetActive(false); //turn off pause menu
             Time.timeScale = 1f;
         }
-            
+        if(player.GetComponent<PlayerController>().crashed){
+            dispCrashLanding();
+        }
+        if(!player.GetComponent<PlayerController>().crashed && CrashScreen.gameObject.activeSelf == true){
+            CrashScreen.gameObject.SetActive(false); //turn off pause menu
+            Time.timeScale = 1f;
+        }
         seconds += Time.deltaTime;
         time.SetText("Time: " + Math.Round(seconds,2));
         long scoreTMP = scoreVal;
@@ -80,7 +89,9 @@ public class Manager : MonoBehaviour {
             if(counter == scoreDiffs.Length)counter = 0;
         }
         multiplierVal = (long)player.GetComponent<PlayerController>().multiplier;
-        score.SetText("Score: " + scoreVal);
+        if(scoreVal > -10000)
+            score.SetText("Score: " + scoreVal);
+        else score.SetText("Score: " + Math.Abs(scoreVal));
         multiplier.SetText("Multiplier: x" + multiplierVal);    
     }
 
@@ -111,6 +122,12 @@ public class Manager : MonoBehaviour {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         TrueVictoryScreen.gameObject.SetActive(true);
+        Time.timeScale = 0f;
+    }
+    public void dispCrashLanding(){
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        CrashScreen.gameObject.SetActive(true);
         Time.timeScale = 0f;
     }
     public void QuitToMainScreen(){
