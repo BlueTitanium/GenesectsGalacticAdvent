@@ -103,14 +103,14 @@ public class Manager : MonoBehaviour {
         TrueVictoryScreen.gameObject.SetActive(true);
         Time.timeScale = 0f;
     }
-    public void QuitGame()
-    {
-        Application.Quit();
+    public void QuitToMainScreen(){
+        SceneManager.LoadScene("Menu");
+        Time.timeScale = 1f;
     }
 
     public void Restart()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("Main");
         Time.timeScale = 1f;
     }
 }
