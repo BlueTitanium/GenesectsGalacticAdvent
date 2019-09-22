@@ -1,5 +1,6 @@
-## Game Design Project 1
- # Guidelines
+# Genesect's Galactic Advent
+Download Genesect's Galactic Advent at: https://bluetitanium.itch.io/genesects-galactic-advent
+## Guidelines for Game Design Project 1
 Project requirements and rubrics:
 
 1) Use Unity and C# to create your first game.
